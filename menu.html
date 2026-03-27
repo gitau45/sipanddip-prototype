@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Menu | Sip and Dip Bistro | Thika's Premier Poolside Dining</title>
+    <!-- Professional Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Color Scheme */
+        :root {
+            --primary-olive: #4a5b3c;
+            --primary-dark: #2c3e2b;
+            --accent-gold: #b8860b;
+            --accent-warm: #c97e2c;
+            --gray-light: #f8f8f6;
+            --gray-mid: #6b6b6b;
+            --gray-dark: #2c2c2c;
+            --border-light: #e8e6e1;
+            --button-hover: #9b6e0a;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .logo-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+            color: var(--gray-mid);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: clamp(40px, 6vw, 48px);
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            color: var(--primary-olive);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-olive);
+            padding: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: clamp(0.7rem, 2vw, 0.8125rem);
+            transition: color 0.2s ease;
+            letter-spacing: 0.02em;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .btn-reserve {
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.25rem;
+            font-weight: 700;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: clamp(0.7rem, 2vw, 0.8125rem);
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-reserve:hover {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        /* Hero Section */
+        .menu-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .menu-hero-content h1 {
+            margin-bottom: 1rem;
+        }
+
+        .menu-hero-content p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Menu Categories */
+        .menu-categories {
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 73px;
+            z-index: 99;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+        }
+
+        .categories-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            padding: 0.75rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gray-mid);
+            white-space: nowrap;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: white;
+        }
+
+        /* Menu Sections */
+        .menu-section {
+            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-gold);
+            display: inline-block;
+            width: auto;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .menu-card-image {
+            width: 100%;
+            height: clamp(200px, 30vw, 220px);
+            object-fit: cover;
+        }
+
+        .menu-card-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .menu-card-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 3vw, 1.25rem);
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
+        }
+
+        .description {
+            color: var(--gray-mid);
+            font-size: clamp(0.875rem, 2vw, 0.9375rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .dietary {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .dietary span {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--gray-light);
+            border-radius: 20px;
+            color: var(--gray-mid);
+        }
+
+        .dietary .popular {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        /* Nyama Choma Special Section */
+        .special-section {
+            background: var(--gray-light);
+            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+            margin: 2rem 0;
+        }
+
+        .special-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .special-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .special-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-gold);
+        }
+
+        .special-card i {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .special-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .special-card .price {
+            font-size: 1.25rem;
+            margin: 0.75rem 0;
+        }
+
+        /* Beverages Section */
+        .beverages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 1.5rem;
+        }
+
+        .beverage-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .beverage-card:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .beverage-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--primary-dark);
+        }
+
+        .beverage-info p {
+            font-size: 0.8125rem;
+            color: var(--gray-mid);
+        }
+
+        .beverage-price {
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-dark);
+            color: #aaa;
+            text-align: center;
+            padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
+            margin-top: 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer p {
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-social {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            color: #aaa;
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.5rem;
+            }
+            
+            .menu-categories {
+                top: 60px;
+            }
+            
+            .categories-container {
+                justify-content: flex-start;
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Sip and Dip Bistro" onerror="this.src='https://placehold.co/48x48?text=SD'">
+                <span class="logo-text">Sip & Dip</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="reservations.html">Reservations</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservations.html" class="btn-reserve">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="menu-hero">
+        <div class="menu-hero-content">
+            <h1>Our Menu</h1>
+            <p>Locally sourced ingredients, expertly prepared with passion and precision</p>
+        </div>
+    </section>
+
+    <!-- Menu Categories (Sticky) -->
+    <div class="menu-categories">
+        <div class="categories-container">
+            <button class="category-btn active" data-category="starters">Starters</button>
+            <button class="category-btn" data-category="mains">Main Courses</button>
+            <button class="category-btn" data-category="nyama">Nyama Choma</button>
+            <button class="category-btn" data-category="beverages">Beverages</button>
+            <button class="category-btn" data-category="desserts">Desserts</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Starters Section -->
+        <section id="starters" class="menu-section">
+            <div style="text-align: center;">
+                <div class="section-header">
+                    <h2>Starters</h2>
+                </div>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Garlic Bread">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Garlic Bread</h3>
+                            <span class="price">KES 350</span>
+                        </div>
+                        <p class="description">Toasted ciabatta with garlic butter, herbs, and Parmesan cheese</p>
+                        <div class="dietary">
+                            <span>Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Spring Rolls">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Vegetable Spring Rolls</h3>
+                            <span class="price">KES 450</span>
+                        </div>
+                        <p class="description">Crispy rolls filled with fresh vegetables, served with sweet chili sauce</p>
+                        <div class="dietary">
+                            <span>Vegetarian</span>
+                            <span class="popular">Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Chicken Wings">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Spicy Chicken Wings</h3>
+                            <span class="price">KES 550</span>
+                        </div>
+                        <p class="description">Crispy wings tossed in house spicy sauce, served with ranch dip</p>
+                        <div class="dietary">
+                            <span class="popular">Bestseller</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Samosa">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Kenyan Samosas</h3>
+                            <span class="price">KES 400</span>
+                        </div>
+                        <p class="description">Traditional spiced meat samosas, crispy and flavorful</p>
+                        <div class="dietary">
+                            <span>Beef</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Courses Section -->
+        <section id="mains" class="menu-section" style="display: none;">
+            <div style="text-align: center;">
+                <div class="section-header">
+                    <h2>Main Courses</h2>
+                </div>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <img src="images/rosemary-pork-chops.jpg" class="menu-card-image" alt="Rosemary Pork Chops" onerror="this.src='https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=800'">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Rosemary Pork Chops</h3>
+                            <span class="price">KES 850</span>
+                        </div>
+                        <p class="description">Grilled pork chops with rosemary, sauteed potatoes, and seasonal vegetables</p>
+                        <div class="dietary">
+                            <span class="popular">Customer Favorite</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="images/creamy-mushroom-chicken.jpg" class="menu-card-image" alt="Creamy Mushroom Chicken" onerror="this.src='https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=800'">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Creamy Mushroom Chicken</h3>
+                            <span class="price">KES 950</span>
+                        </div>
+                        <p class="description">Juicy chicken breast in rich mushroom cream sauce, served with crispy fries</p>
+                        <div class="dietary">
+                            <span class="popular">Bestseller</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="images/char-grilled-chicken.jpg" class="menu-card-image" alt="Char-Grilled Chicken" onerror="this.src='https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=800'">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Char-Grilled Chicken</h3>
+                            <span class="price">KES 750</span>
+                        </div>
+                        <p class="description">Fresh chicken marinated in herbs, char-grilled to perfection</p>
+                        <div class="dietary">
+                            <span class="popular">Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="images/char-grilled-chicken.jpg" class="menu-card-image" alt="Grilled Fish">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Grilled Tilapia</h3>
+                            <span class="price">KES 1,200</span>
+                        </div>
+                        <p class="description">Fresh tilapia grilled with herbs, served with ugali and kachumbari</p>
+                        <div class="dietary">
+                            <span>Gluten-Free Option</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Beef Steak">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Beef Steak</h3>
+                            <span class="price">KES 1,100</span>
+                        </div>
+                        <p class="description">250g sirloin steak cooked to your liking, served with fries and grilled vegetables</p>
+                        <div class="dietary">
+                            <span>Premium Cut</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Vegetarian Platter">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Vegetarian Platter</h3>
+                            <span class="price">KES 700</span>
+                        </div>
+                        <p class="description">Grilled vegetables, rice pilaf, and house salad with tahini dressing</p>
+                        <div class="dietary">
+                            <span>Vegan</span>
+                            <span>Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nyama Choma Special Section -->
+        <section id="nyama" class="special-section" style="display: none;">
+            <div style="text-align: center;">
+                <div class="section-header">
+                    <h2>Nyama Choma Zone</h2>
+                </div>
+                <p class="section-subtitle">Authentic Kenyan grilled meats, fresh from our grill masters</p>
+            </div>
+            <div class="special-grid">
+                <div class="special-card">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <h3>Grilled Goat Meat</h3>
+                    <p>Succulent goat meat, slow-grilled to perfection</p>
+                    <div class="price">KES 500 (1/4 kg)</div>
+                </div>
+                <div class="special-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Beef Mbuzi</h3>
+                    <p>Traditional beef cuts, grilled with house spices</p>
+                    <div class="price">KES 450 (1/4 kg)</div>
+                </div>
+                <div class="special-card">
+                    <i class="fas fa-drumstick"></i>
+                    <h3>Chicken Choma</h3>
+                    <p>Whole or half chicken, charcoal-grilled</p>
+                    <div class="price">KES 650 (Half) | 1,200 (Full)</div>
+                </div>
+                <div class="special-card">
+                    <i class="fas fa-fish"></i>
+                    <h3>Grilled Tilapia</h3>
+                    <p>Fresh tilapia grilled with special herb marinade</p>
+                    <div class="price">KES 1,200</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--gray-mid); font-size: 0.875rem;"><i class="fas fa-fire"></i> All nyama choma served with kachumbari, ugali, and your choice of sauce</p>
+            </div>
+        </section>
+
+        <!-- Beverages Section -->
+        <section id="beverages" class="menu-section" style="display: none;">
+            <div style="text-align: center;">
+                <div class="section-header">
+                    <h2>Beverages</h2>
+                </div>
+            </div>
+            
+            <h3 style="margin: 2rem 0 1rem; color: var(--primary-dark);">Signature Cocktails</h3>
+            <div class="beverages-grid">
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Passion Mojito</h4>
+                        <p>Fresh passion fruit, mint, lime, rum, soda</p>
+                    </div>
+                    <span class="beverage-price">KES 650</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Dawa Cocktail</h4>
+                        <p>Vodka, honey, lime, ginger — Kenya's favorite</p>
+                    </div>
+                    <span class="beverage-price">KES 550</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Pina Colada</h4>
+                        <p>Rum, coconut cream, pineapple juice</p>
+                    </div>
+                    <span class="beverage-price">KES 700</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Margarita</h4>
+                        <p>Tequila, triple sec, fresh lime juice</p>
+                    </div>
+                    <span class="beverage-price">KES 650</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; color: var(--primary-dark);">Soft Drinks & Juices</h3>
+            <div class="beverages-grid">
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Sodas</h4>
+                        <p>Coke, Sprite, Fanta, Tonic Water</p>
+                    </div>
+                    <span class="beverage-price">KES 150</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Fresh Juices</h4>
+                        <p>Mango, Passion, Orange, Watermelon</p>
+                    </div>
+                    <span class="beverage-price">KES 250</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Bottled Water</h4>
+                        <p>500ml / 1L</p>
+                    </div>
+                    <span class="beverage-price">KES 100 / 200</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Milkshakes</h4>
+                        <p>Chocolate, Vanilla, Strawberry</p>
+                    </div>
+                    <span class="beverage-price">KES 350</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; color: var(--primary-dark);">Beers & Wines</h3>
+            <div class="beverages-grid">
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Tusker / Tusker Lite</h4>
+                        <p>Kenya's finest</p>
+                    </div>
+                    <span class="beverage-price">KES 250</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>White Cap / Pilsner</h4>
+                        <p>Premium lager</p>
+                    </div>
+                    <span class="beverage-price">KES 250</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>House Wine</h4>
+                        <p>Red / White / Rosé</p>
+                    </div>
+                    <span class="beverage-price">KES 450 (glass)</span>
+                </div>
+                <div class="beverage-card">
+                    <div class="beverage-info">
+                        <h4>Premium Wine</h4>
+                        <p>South African selection</p>
+                    </div>
+                    <span class="beverage-price">KES 1,800 (bottle)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desserts Section -->
+        <section id="desserts" class="menu-section" style="display: none;">
+            <div style="text-align: center;">
+                <div class="section-header">
+                    <h2>Desserts</h2>
+                </div>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/3026804/pexels-photo-3026804.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Chocolate Lava Cake">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Chocolate Lava Cake</h3>
+                            <span class="price">KES 450</span>
+                        </div>
+                        <p class="description">Warm chocolate cake with molten center, served with vanilla ice cream</p>
+                        <div class="dietary">
+                            <span class="popular">Bestseller</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Ice Cream">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Ice Cream Trio</h3>
+                            <span class="price">KES 350</span>
+                        </div>
+                        <p class="description">Three scoops of your choice: vanilla, chocolate, strawberry</p>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=800" class="menu-card-image" alt="Fruit Salad">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Fresh Fruit Salad</h3>
+                            <span class="price">KES 400</span>
+                        </div>
+                        <p class="description">Seasonal fresh fruits with honey and mint</p>
+                        <div class="dietary">
+                            <span>Vegan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Sip and Dip Bistro — Thika's Premier Poolside Dining Destination</p>
+        <p>📍 Thika-Mangu Flyover Rd | Open Daily from 10 AM</p>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-tripadvisor"></i></a>
+        </div>
+        <p>We value your feedback. Let us know how we can serve you better.</p>
+    </footer>
+
+    <!-- Category Filter Script -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const sections = {
+            starters: document.getElementById('starters'),
+            mains: document.getElementById('mains'),
+            nyama: document.getElementById('nyama'),
+            beverages: document.getElementById('beverages'),
+            desserts: document.getElementById('desserts')
+        };
+
+        function showCategory(category) {
+            Object.values(sections).forEach(section => {
+                if (section) section.style.display = 'none';
+            });
+            if (sections[category]) {
+                sections[category].style.display = 'block';
+            }
+            categoryBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-category');
+                showCategory(category);
+            });
+        });
+
+        showCategory('starters');
+    </script>
+</body>
+</html>

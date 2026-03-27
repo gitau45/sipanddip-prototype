@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us | Sip and Dip Bistro | Thika's Hidden Gem</title>
+    <!-- Professional Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Color Scheme */
+        :root {
+            --primary-olive: #4a5b3c;
+            --primary-dark: #2c3e2b;
+            --accent-gold: #b8860b;
+            --accent-warm: #c97e2c;
+            --gray-light: #f8f8f6;
+            --gray-mid: #6b6b6b;
+            --gray-dark: #2c2c2c;
+            --border-light: #e8e6e1;
+            --button-hover: #9b6e0a;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .logo-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+            color: var(--gray-mid);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: clamp(40px, 6vw, 48px);
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            color: var(--primary-olive);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-olive);
+            padding: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: clamp(0.7rem, 2vw, 0.8125rem);
+            transition: color 0.2s ease;
+            letter-spacing: 0.02em;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .btn-reserve {
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.25rem;
+            font-weight: 700;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: clamp(0.7rem, 2vw, 0.8125rem);
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-reserve:hover {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .about-hero-content h1 {
+            margin-bottom: 1rem;
+        }
+
+        .about-hero-content p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .story-content h2 {
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .story-content p {
+            color: var(--gray-mid);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: var(--gray-light);
+            padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+        }
+
+        .values-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-dark);
+        }
+
+        .value-card p {
+            color: var(--gray-mid);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--accent-gold);
+        }
+
+        .team-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: var(--primary-dark);
+        }
+
+        .team-title {
+            color: var(--accent-gold);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-bio {
+            color: var(--gray-mid);
+            font-size: 0.875rem;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        /* Milestones Section */
+        .milestones-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-olive) 100%);
+            color: white;
+            padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+            text-align: center;
+        }
+
+        .milestones-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .milestones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .milestone-card {
+            text-align: center;
+        }
+
+        .milestone-year {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .milestone-text {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gray-light);
+            text-align: center;
+            padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--gray-mid);
+            margin-bottom: 2rem;
+        }
+
+        .btn-cta {
+            background: var(--accent-gold);
+            color: white;
+            padding: 0.875rem 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-dark);
+            color: #aaa;
+            text-align: center;
+            padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer p {
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-social {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            color: #aaa;
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.5rem;
+            }
+            
+            .story-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .story-image {
+                order: -1;
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Sip and Dip Bistro" onerror="this.src='https://placehold.co/48x48?text=SD'">
+                <span class="logo-text">Sip & Dip</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="reservations.html">Reservations</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservations.html" class="btn-reserve">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>Our Story</h1>
+            <p>A hidden gem in Thika, where great food meets unforgettable experiences</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <div class="story-section">
+        <div class="story-content">
+            <h2>Welcome to Sip and Dip Bistro</h2>
+            <p>Nestled along the vibrant Thika-Mangu Flyover Road, Sip and Dip Bistro began with a simple vision: to create a space where friends, families, and colleagues could escape the ordinary and experience something truly special.</p>
+            <p>What started as a dream to bring together authentic Kenyan cuisine with world-class hospitality has grown into Thika's most beloved destination. From our signature nyama choma zone to our serene poolside dining, every corner of Sip and Dip is designed with you in mind.</p>
+            <p>We believe that great food brings people together. That's why we source our ingredients locally, work with the freshest produce, and prepare every dish with passion and precision. Our grill masters have perfected the art of nyama choma, while our chefs create mouthwatering dishes that keep our guests coming back.</p>
+            <p>But Sip and Dip is more than just a restaurant. It's a place to unwind by the pool, dance the night away in our underground club, catch the big game on our massive screens, or simply enjoy quality time with loved ones. We've created a space where everyone feels welcome, and every visit feels like a celebration.</p>
+        </div>
+        <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=800" class="story-image" alt="Sip and Dip Bistro Interior" onerror="this.src='https://placehold.co/600x400?text=Sip+and+Dip'">
+    </div>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-container">
+            <h2 class="section-title">Our Values</h2>
+            <p class="section-subtitle">The principles that guide everything we do</p>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Authentic Hospitality</h3>
+                    <p>We treat every guest like family, ensuring warm welcomes and memorable experiences.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Fresh & Local</h3>
+                    <p>We source ingredients from local farmers and suppliers, supporting our community.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-fire"></i></div>
+                    <h3>Quality First</h3>
+                    <p>From our grill to your plate, we never compromise on taste or freshness.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-users"></i></div>
+                    <h3>Community Spirit</h3>
+                    <p>We're proud to be a gathering place where Thika's community comes together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="section-subtitle">The passionate people behind your experience</p>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" class="team-image" alt="Chef" onerror="this.src='https://placehold.co/200x200?text=Chef'">
+                <h3>Chef James Mwangi</h3>
+                <div class="team-title">Executive Chef</div>
+                <p class="team-bio">With over 15 years of experience, Chef James brings passion and creativity to every dish.</p>
+            </div>
+            <div class="team-card">
+                <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400" class="team-image" alt="Grill Master" onerror="this.src='https://placehold.co/200x200?text=Grill+Master'">
+                <h3>Peter Otieno</h3>
+                <div class="team-title">Nyama Choma Master</div>
+                <p class="team-bio">The secret behind our legendary grilled meats. Peter has mastered the art of the grill.</p>
+            </div>
+            <div class="team-card">
+                <img src="https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg?auto=compress&cs=tinysrgb&w=400" class="team-image" alt="Mixologist" onerror="this.src='https://placehold.co/200x200?text=Mixologist'">
+                <h3>Sarah Wanjiku</h3>
+                <div class="team-title">Head Mixologist</div>
+                <p class="team-bio">Creating signature cocktails that delight and surprise. Sarah's passion is contagious.</p>
+            </div>
+            <div class="team-card">
+                <img src="https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg?auto=compress&cs=tinysrgb&w=400" class="team-image" alt="Hospitality" onerror="this.src='https://placehold.co/200x200?text=Hospitality'">
+                <h3>Grace Muthoni</h3>
+                <div class="team-title">Hospitality Manager</div>
+                <p class="team-bio">Ensuring every guest leaves with a smile. Grace leads our front-of-house team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+        <div class="milestones-container">
+            <h2 class="section-title" style="color: white;">Our Journey</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Moments that shaped who we are</p>
+            <div class="milestones-grid">
+                <div class="milestone-card">
+                    <div class="milestone-year">2018</div>
+                    <div class="milestone-text">Sip and Dip opens its doors in Thika</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="milestone-year">2019</div>
+                    <div class="milestone-text">Nyama Choma Zone introduced</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="milestone-year">2021</div>
+                    <div class="milestone-text">Underground club opens to rave reviews</div>
+                </div>
+                <div class="milestone-card">
+                    <div class="milestone-year">2024</div>
+                    <div class="milestone-text">Expanded amenities: Gym, Sauna & Car Wash</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Come Experience Sip and Dip</h2>
+            <p>Whether it's a casual lunch, a special celebration, or a night out with friends — we can't wait to welcome you.</p>
+            <a href="reservations.html" class="btn-cta">Book Your Table →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Sip and Dip Bistro — Thika's Premier Poolside Dining Destination</p>
+        <p>📍 Thika-Mangu Flyover Rd | Open Daily from 10 AM</p>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-tripadvisor"></i></a>
+        </div>
+        <p>We value your feedback. Let us know how we can serve you better.</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Amenities | Sip and Dip Bistro | Poolside, Nyama Choma, Club & More</title>
+    <!-- Professional Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Color Scheme */
+        :root {
+            --primary-olive: #4a5b3c;
+            --primary-dark: #2c3e2b;
+            --accent-gold: #b8860b;
+            --accent-warm: #c97e2c;
+            --gray-light: #f8f8f6;
+            --gray-mid: #6b6b6b;
+            --gray-dark: #2c2c2c;
+            --border-light: #e8e6e1;
+            --button-hover: #9b6e0a;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .logo-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+            color: var(--gray-mid);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: clamp(40px, 6vw, 48px);
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            color: var(--primary-olive);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-olive);
+            padding: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: clamp(0.7rem, 2vw, 0.8125rem);
+            transition: color 0.2s ease;
+            letter-spacing: 0.02em;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .btn-reserve {
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.5rem 1.25rem;
+            font-weight: 700;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: clamp(0.7rem, 2vw, 0.8125rem);
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-reserve:hover {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        /* Hero Section */
+        .amenities-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            min-height: 35vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .amenities-hero-content h1 {
+            margin-bottom: 1rem;
+        }
+
+        .amenities-hero-content p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Amenities Grid */
+        .amenities-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: 2rem;
+        }
+
+        .amenity-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .amenity-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .amenity-content {
+            padding: 1.75rem;
+        }
+
+        .amenity-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .amenity-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-dark);
+        }
+
+        .amenity-content p {
+            color: var(--gray-mid);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .amenity-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .amenity-features li {
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            color: var(--gray-mid);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .amenity-features li i {
+            color: var(--accent-gold);
+            width: 20px;
+        }
+
+        .amenity-hours {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.875rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .amenity-hours span {
+            color: var(--primary-olive);
+            font-weight: 600;
+        }
+
+        /* Quick Stats Section */
+        .stats-section {
+            background: var(--gray-light);
+            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-mid);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-olive) 100%);
+            color: white;
+            text-align: center;
+            padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-cta {
+            background: var(--accent-gold);
+            color: white;
+            padding: 0.875rem 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-dark);
+            color: #aaa;
+            text-align: center;
+            padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer p {
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-social {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-social a {
+            color: #aaa;
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.5rem;
+            }
+            
+            .amenity-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Sip and Dip Bistro" onerror="this.src='https://placehold.co/48x48?text=SD'">
+                <span class="logo-text">Sip & Dip</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="reservations.html">Reservations</a></li>
+                <li><a href="amenities.html" class="active">Amenities</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservations.html" class="btn-reserve">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="amenities-hero">
+        <div class="amenities-hero-content">
+            <h1>Our Amenities</h1>
+            <p>More than just a restaurant — a complete destination for relaxation and entertainment</p>
+        </div>
+    </section>
+
+    <!-- Amenities Grid -->
+    <div class="amenities-grid">
+        <!-- Poolside Dining -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Poolside Dining" onerror="this.src='https://placehold.co/800x500?text=Poolside+Dining'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-swimming-pool"></i></div>
+                <h2>Poolside Dining</h2>
+                <p>Enjoy your meal while soaking up the sun by our refreshing pool. The perfect spot for lazy afternoons and romantic evenings.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> Heated pool available year-round</li>
+                    <li><i class="fas fa-check"></i> Poolside service and cabanas</li>
+                    <li><i class="fas fa-check"></i> Towel service available</li>
+                    <li><i class="fas fa-check"></i> Lifeguard on duty during peak hours</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Daily: 9:00 AM - 7:00 PM</span>
+                    <span>Entry: Free for diners</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nyama Choma Zone -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Nyama Choma Zone" onerror="this.src='https://placehold.co/800x500?text=Nyama+Choma+Zone'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-drumstick-bite"></i></div>
+                <h2>Nyama Choma Zone</h2>
+                <p>Experience authentic Kenyan grilled meats, prepared fresh by our expert grill masters. The ultimate spot for meat lovers.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> Fresh goat, beef, and chicken daily</li>
+                    <li><i class="fas fa-check"></i> Traditional kachumbari and ugali</li>
+                    <li><i class="fas fa-check"></i> Live grilling station</li>
+                    <li><i class="fas fa-check"></i> House-made hot sauces</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Daily: 12:00 PM - 10:00 PM</span>
+                    <span>Fresh off the grill</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Underground Club -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Underground Club" onerror="this.src='https://placehold.co/800x500?text=Underground+Club'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-music"></i></div>
+                <h2>Underground Club</h2>
+                <p>Soundproof nightlife with premium cocktails and the best DJs. The party stays below — so the dining experience above remains peaceful.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> State-of-the-art sound system</li>
+                    <li><i class="fas fa-check"></i> Premium cocktail bar</li>
+                    <li><i class="fas fa-check"></i> Live DJs on weekends</li>
+                    <li><i class="fas fa-check"></i> VIP bottle service available</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Fri-Sat: 8:00 PM - 3:00 AM</span>
+                    <span>No cover charge</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Big Screens -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/274937/pexels-photo-274937.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Big Screens" onerror="this.src='https://placehold.co/800x500?text=Big+Screens'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-tv"></i></div>
+                <h2>Big Screens</h2>
+                <p>Catch every match live with fellow fans. Cold drinks, great food, and all the action on our massive HD screens.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> 4K Ultra HD screens</li>
+                    <li><i class="fas fa-check"></i> Premier League, Champions League, La Liga</li>
+                    <li><i class="fas fa-check"></i> Rugby, Formula 1, and Boxing</li>
+                    <li><i class="fas fa-check"></i> Special game day offers</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Match days: 3:00 PM - Late</span>
+                    <span>Reserve your spot</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gym & Sauna -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Gym & Sauna" onerror="this.src='https://placehold.co/800x500?text=Gym+%26+Sauna'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-dumbbell"></i></div>
+                <h2>Gym & Sauna</h2>
+                <p>Work out, unwind, and refuel — all in one convenient location. Modern equipment and relaxing sauna facilities.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> Cardio and strength equipment</li>
+                    <li><i class="fas fa-check"></i> Professional trainers available</li>
+                    <li><i class="fas fa-check"></i> Steam room and sauna</li>
+                    <li><i class="fas fa-check"></i> Locker rooms with showers</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Daily: 6:00 AM - 9:00 PM</span>
+                    <span>Day pass: KES 500</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Car Wash -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/717979/pexels-photo-717979.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Car Wash" onerror="this.src='https://placehold.co/800x500?text=Car+Wash'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-car"></i></div>
+                <h2>Car Wash</h2>
+                <p>Get your vehicle sparkling while you enjoy your meal. Convenient on-site service that saves you time.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> Exterior hand wash</li>
+                    <li><i class="fas fa-check"></i> Interior vacuum and detailing</li>
+                    <li><i class="fas fa-check"></i> Wax and polish services</li>
+                    <li><i class="fas fa-check"></i> Free while you dine</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Daily: 9:00 AM - 6:00 PM</span>
+                    <span>From KES 300</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family & Kids Area -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Kids Playground" onerror="this.src='https://placehold.co/800x500?text=Kids+Playground'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-child"></i></div>
+                <h2>Kids' Playground</h2>
+                <p>Safe, supervised fun for the little ones while you relax and enjoy your meal. Family-friendly atmosphere.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> Indoor play structure</li>
+                    <li><i class="fas fa-check"></i> Supervised during peak hours</li>
+                    <li><i class="fas fa-check"></i> Kids' menu available</li>
+                    <li><i class="fas fa-check"></i> Birthday party packages</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Daily: 10:00 AM - 8:00 PM</span>
+                    <span>Free for diners</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Free Parking -->
+        <div class="amenity-card">
+            <img src="https://images.pexels.com/photos/4482197/pexels-photo-4482197.jpeg?auto=compress&cs=tinysrgb&w=800" class="amenity-image" alt="Free Parking" onerror="this.src='https://placehold.co/800x500?text=Free+Parking'">
+            <div class="amenity-content">
+                <div class="amenity-icon"><i class="fas fa-parking"></i></div>
+                <h2>Free Parking</h2>
+                <p>Spacious, secure parking with 24/7 security surveillance. No stress finding a spot.</p>
+                <ul class="amenity-features">
+                    <li><i class="fas fa-check"></i> 100+ parking spaces</li>
+                    <li><i class="fas fa-check"></i> 24/7 security cameras</li>
+                    <li><i class="fas fa-check"></i> Handicap accessible spots</li>
+                    <li><i class="fas fa-check"></i> Electric vehicle charging station</li>
+                </ul>
+                <div class="amenity-hours">
+                    <span><i class="far fa-clock"></i> Always open</span>
+                    <span>Completely free</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">Unique Amenities</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Parking Spaces</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1,000+</div>
+                <div class="stat-label">Happy Guests Weekly</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.5★</div>
+                <div class="stat-label">Guest Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Experience It All?</h2>
+        <p>Come discover why Sip and Dip is Thika's favorite destination. Book your table and enjoy all our amenities.</p>
+        <a href="reservations.html" class="btn-cta">Reserve Your Table →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Sip and Dip Bistro — Thika's Premier Poolside Dining Destination</p>
+        <p>📍 Thika-Mangu Flyover Rd | Open Daily from 10 AM</p>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-tripadvisor"></i></a>
+        </div>
+        <p>We value your feedback. Let us know how we can serve you better.</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
